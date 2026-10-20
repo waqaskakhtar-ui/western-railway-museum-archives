@@ -1,0 +1,8 @@
+{
+  "name": "western-railway-museum-archives",
+  "version": "1.0.0",
+  "description": "California's Railroad History Digital Archives - Western Railway Museum",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
