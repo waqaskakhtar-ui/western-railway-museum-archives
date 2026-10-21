@@ -1,6 +1,6 @@
 /**
  * Western Railway Museum - Digital Archives
- * Interactive UI Scripts
+ * Interactive UI Scripts with Dynamic Card Carousel
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -97,7 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 4. Stories Carousel Functionality ---
+  // --- 4. Dynamic Stories Card Slider ---
+  const storiesTrack = document.getElementById('storiesTrack');
+  const storiesWrapper = document.getElementById('storiesTrackWrapper');
   const carouselPrevBtn = document.getElementById('carouselPrevBtn');
   const carouselNextBtn = document.getElementById('carouselNextBtn');
   const carouselCounter = document.getElementById('carouselCounter');
@@ -106,18 +108,41 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentSlideIndex = 0;
 
   const updateCarouselUI = () => {
-    // Update active class on cards
+    // 1. Update active class on cards
     storyCards.forEach((card, idx) => {
       if (idx === currentSlideIndex) {
         card.classList.add('active');
-        // Scroll card into view if needed
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       } else {
         card.classList.remove('active');
       }
     });
 
-    // Update counter
+    // 2. Translate track smoothly
+    if (storiesTrack && storyCards.length > 0) {
+      const firstCard = storyCards[0];
+      const cardRect = firstCard.getBoundingClientRect();
+      const cardWidth = cardRect.width;
+      
+      const trackStyles = window.getComputedStyle(storiesTrack);
+      const gap = parseFloat(trackStyles.gap) || 24;
+      
+      const wrapperWidth = storiesWrapper ? storiesWrapper.getBoundingClientRect().width : window.innerWidth;
+      const totalTrackWidth = (cardWidth * totalSlides) + (gap * (totalSlides - 1));
+      const maxTranslate = Math.max(0, totalTrackWidth - wrapperWidth + 30);
+      
+      let targetTranslate = currentSlideIndex * (cardWidth + gap);
+      
+      // If we are at the last slide, align to the end cleanly
+      if (currentSlideIndex === totalSlides - 1 && maxTranslate > 0) {
+        targetTranslate = maxTranslate;
+      } else if (targetTranslate > maxTranslate) {
+        targetTranslate = maxTranslate;
+      }
+      
+      storiesTrack.style.transform = `translateX(-${targetTranslate}px)`;
+    }
+
+    // 3. Update counter (e.g. 01 / 04)
     const slideNumberFormatted = String(currentSlideIndex + 1).padStart(2, '0');
     const totalFormatted = String(totalSlides).padStart(2, '0');
     if (carouselCounter) {
@@ -139,13 +164,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Clicking any story card activates it
+  // Clicking any story card activates it and slides to it
   storyCards.forEach((card, idx) => {
     card.addEventListener('click', () => {
       currentSlideIndex = idx;
       updateCarouselUI();
     });
   });
+
+  // Touch Swipe Support for Mobile & Tablets
+  let touchStartX = 0;
+  let touchEndX = 0;
+  if (storiesWrapper) {
+    storiesWrapper.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    storiesWrapper.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          // Swipe left -> next
+          currentSlideIndex = (currentSlideIndex + 1) % totalSlides;
+        } else {
+          // Swipe right -> prev
+          currentSlideIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+        }
+        updateCarouselUI();
+      }
+    }, { passive: true });
+  }
+
+  // Recalculate on window resize
+  window.addEventListener('resize', updateCarouselUI, { passive: true });
+
+  // Initial call
+  setTimeout(updateCarouselUI, 100);
 
   // --- 5. Active Navigation Highlighting on Scroll ---
   const sections = document.querySelectorAll('section[id]');
@@ -173,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 6. Hero Slider Indicators ---
   const heroIndicators = document.querySelectorAll('.hero-carousel-indicators span');
-  heroIndicators.forEach((indicator, index) => {
+  heroIndicators.forEach((indicator) => {
     indicator.addEventListener('click', () => {
       heroIndicators.forEach(ind => ind.classList.remove('active', 'indicator-bar'));
       heroIndicators.forEach(ind => ind.classList.add('indicator-dot'));
@@ -183,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 7. Learn More Modal Demo ---
+  // --- 7. Learn More Button ---
   const learnMoreBtn = document.getElementById('learnMoreBtn');
   if (learnMoreBtn) {
     learnMoreBtn.addEventListener('click', () => {

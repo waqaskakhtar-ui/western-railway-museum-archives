@@ -1,6 +1,6 @@
 /* ==========================================================================
    Western Railway Museum - Digital Archives Stylesheet
-   Full-Width & Immersive Design System
+   Full-Width & Immersive Design System with Interactive Carousel
    ========================================================================== */
 
 :root {
@@ -205,7 +205,7 @@ ul {
   font-weight: 600;
 }
 
-/* Active Nav Underline matching design */
+/* Active Nav Underline */
 .nav-link.active::after {
   content: '';
   position: absolute;
@@ -417,7 +417,6 @@ ul {
   transform: scale(1.05);
 }
 
-/* Cinematic Gradient Overlay: Dark on left for text legibility, clear on right for streetcar */
 .hero-overlay-gradient {
   position: absolute;
   inset: 0;
@@ -460,7 +459,6 @@ ul {
   width: 100%;
 }
 
-/* Left Hero Content */
 .hero-content {
   max-width: 580px;
 }
@@ -590,7 +588,6 @@ ul {
   position: relative;
 }
 
-/* Header Row */
 .collections-header-row {
   display: grid;
   grid-template-columns: 1.3fr 1.6fr auto;
@@ -631,7 +628,6 @@ ul {
   height: auto;
 }
 
-/* Full Width Collections Grid (6 Columns across the viewport) */
 .collections-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -873,11 +869,11 @@ ul {
 }
 
 /* ==========================================================================
-   Section 4: Featured From the Archives (Full Width)
+   Section 4: Featured Stories (Enlarged & Dynamic Card Slider)
    ========================================================================== */
 .section-stories {
   background-color: var(--bg-dark-section);
-  padding: 100px 0 115px 0;
+  padding: 100px 0 120px 0;
   position: relative;
   overflow: hidden;
 }
@@ -886,7 +882,7 @@ ul {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 44px;
+  margin-bottom: 46px;
 }
 
 .stories-intro {
@@ -918,81 +914,97 @@ ul {
 }
 
 .carousel-arrow {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--text-white);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
 .carousel-arrow:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.06);
+  background: rgba(232, 93, 34, 0.2);
+  border-color: var(--color-primary);
+  transform: scale(1.08);
 }
 
 .carousel-arrow svg {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 }
 
 .carousel-counter {
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--text-gray-400);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  min-width: 60px;
+  text-align: center;
 }
 
 .current-slide {
   color: var(--text-white);
+  font-size: 16px;
 }
 
-/* Stories Cards Track */
+/* Stories Cards Slider / Track (Doesn't cram 4 cards; slides smoothly!) */
 .stories-track-wrapper {
   overflow: hidden;
-  margin: 0 -10px;
-  padding: 10px;
+  width: 100%;
+  position: relative;
+  padding: 16px 8px 36px 8px;
+  margin: 0 -8px;
 }
 
 .stories-track {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(18px, 2vw, 32px);
-  transition: transform var(--transition-smooth);
+  display: flex;
+  gap: clamp(20px, 2.2vw, 32px);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
 }
 
+/* Enlarged Story Card: Generous dimensions so images are large & clear */
 .story-card {
-  background: rgba(18, 22, 28, 0.72);
+  flex: 0 0 clamp(350px, 32vw, 460px);
+  width: clamp(350px, 32vw, 460px);
+  background: rgba(16, 21, 28, 0.78);
   border: 1px solid var(--border-dark-glass);
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: all var(--transition-smooth);
   cursor: pointer;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  user-select: none;
 }
 
 .story-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
 }
 
-/* Active Story Card Glowing Orange Border */
+/* Active Story Card Glowing Orange Border matching design */
 .story-card.active {
   border: 2px solid var(--color-primary);
-  box-shadow: 0 0 28px var(--color-primary-glow);
+  box-shadow: 0 0 32px var(--color-primary-glow);
+  transform: translateY(-6px);
 }
 
+/* Significantly enlarged image container */
 .story-image-box {
   width: 100%;
-  height: 180px;
+  height: 250px;
+  min-height: 240px;
   overflow: hidden;
   background-color: #111827;
+  position: relative;
 }
 
 .story-img {
@@ -1003,11 +1015,11 @@ ul {
 }
 
 .story-card:hover .story-img {
-  transform: scale(1.07);
+  transform: scale(1.08);
 }
 
 .story-body {
-  padding: 18px 22px 22px 22px;
+  padding: 22px 24px 26px 24px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -1015,34 +1027,34 @@ ul {
 }
 
 .story-badge {
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color: var(--color-primary);
   text-transform: uppercase;
-  margin-bottom: 9px;
+  margin-bottom: 10px;
 }
 
 .story-title {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text-white);
   line-height: 1.35;
-  margin-bottom: 12px;
-  padding-right: 32px;
+  margin-bottom: 14px;
+  padding-right: 36px;
 }
 
 .story-link-icon {
   position: absolute;
-  bottom: 20px;
-  right: 22px;
+  bottom: 24px;
+  right: 24px;
   color: var(--color-primary);
   transition: transform var(--transition-fast);
 }
 
 .story-link-icon svg {
-  width: 17px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
 }
 
 .story-card:hover .story-link-icon {
@@ -1344,10 +1356,6 @@ ul {
   .header-col-right {
     display: none;
   }
-
-  .stories-track {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 @media (max-width: 900px) {
@@ -1390,16 +1398,21 @@ ul {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
+  .story-card {
+    flex: 0 0 340px;
+    width: 340px;
+  }
+
+  .story-image-box {
+    height: 220px;
+  }
 }
 
 @media (max-width: 680px) {
   .collections-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
-  }
-
-  .stories-track {
-    grid-template-columns: 1fr;
   }
 
   .stories-top-row {
@@ -1409,6 +1422,15 @@ ul {
 
   .stories-carousel-controls {
     margin-top: 16px;
+  }
+
+  .story-card {
+    flex: 0 0 calc(85vw - 16px);
+    width: calc(85vw - 16px);
+  }
+
+  .story-image-box {
+    height: 200px;
   }
 
   .footer-links-grid {
