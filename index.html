@@ -21,7 +21,7 @@
 
   <!-- ==================== HEADER / NAVIGATION ==================== -->
   <header class="site-header" id="siteHeader">
-    <div class="header-container">
+    <div class="header-container full-width-container">
       
       <!-- Brand Logo -->
       <a href="#" class="brand-link" aria-label="Western Railway Museum Home">
@@ -103,11 +103,22 @@
   </div>
 
   <main>
-    <!-- ==================== HERO SECTION ==================== -->
+    <!-- ==================== HERO SECTION (FULL WIDTH & IMMERSIVE) ==================== -->
     <section class="hero-section" id="hero">
-      <div class="hero-backdrop-glow"></div>
       
-      <div class="hero-container">
+      <!-- Full-Bleed Background Image Layer -->
+      <div class="hero-bg-layer">
+        <img 
+          src="assets/hero-bg-hd.jpg" 
+          alt="California's Historic Pacific Electric / Sacramento Northern Streetcar 1005 in Los Angeles sunset" 
+          class="hero-bg-image" 
+        />
+        <div class="hero-overlay-gradient"></div>
+        <div class="hero-backdrop-glow"></div>
+      </div>
+      
+      <!-- Full-Width Hero Content Container -->
+      <div class="hero-container full-width-container">
         
         <!-- Left Hero Content -->
         <div class="hero-content">
@@ -153,14 +164,8 @@
           </div>
         </div>
 
-        <!-- Right Hero Visual & Trolley Image -->
-        <div class="hero-visual">
-          <div class="trolley-image-wrapper">
-            <img src="assets/hero-trolley-hd.jpg" alt="Sacramento Northern / Pacific Electric Red Streetcar Car 1005 in Los Angeles Sunset" class="hero-trolley-img" />
-            <div class="trolley-ambient-overlay"></div>
-          </div>
-
-          <!-- Floating Glassmorphic Metric Card -->
+        <!-- Right Hero Floating Glass Stat Card -->
+        <div class="hero-right-floater">
           <div class="hero-glass-card">
             <div class="glass-stat-item">
               <div class="glass-stat-number">150,000+</div>
@@ -177,9 +182,9 @@
       </div>
     </section>
 
-    <!-- ==================== SECTION 2: WHAT YOU'LL FIND ==================== -->
-    <section class="section-collections" id="collections">
-      <div class="collections-container">
+    <!-- ==================== SECTION 2: WHAT YOU'LL FIND (FULL WIDTH) ==================== -->
+    <section class="section-collections full-width-section" id="collections">
+      <div class="collections-container full-width-container">
         
         <!-- Section Header -->
         <div class="collections-header-row">
@@ -206,7 +211,7 @@
           </div>
         </div>
 
-        <!-- 6 Collections Grid -->
+        <!-- 6 Collections Grid (Full Width) -->
         <div class="collections-grid">
           
           <!-- Card 1: Photographs -->
@@ -216,7 +221,6 @@
             </div>
             <div class="card-body">
               <div class="card-icon-wrapper">
-                <!-- Camera icon -->
                 <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
                   <circle cx="12" cy="13" r="4"></circle>
@@ -242,7 +246,6 @@
             </div>
             <div class="card-body">
               <div class="card-icon-wrapper">
-                <!-- Map icon -->
                 <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
                   <line x1="8" y1="2" x2="8" y2="18"></line>
@@ -269,7 +272,6 @@
             </div>
             <div class="card-body">
               <div class="card-icon-wrapper">
-                <!-- Document icon -->
                 <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
@@ -298,7 +300,6 @@
             </div>
             <div class="card-body">
               <div class="card-icon-wrapper">
-                <!-- Train / trolley car icon -->
                 <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="4" y="3" width="16" height="15" rx="2"></rect>
                   <line x1="4" y1="11" x2="20" y2="11"></line>
@@ -328,7 +329,6 @@
             </div>
             <div class="card-body">
               <div class="card-icon-wrapper">
-                <!-- Crossed tools icon -->
                 <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
                 </svg>
@@ -353,7 +353,6 @@
             </div>
             <div class="card-body">
               <div class="card-icon-wrapper">
-                <!-- Book icon -->
                 <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
                   <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -377,14 +376,14 @@
       </div>
     </section>
 
-    <!-- ==================== SECTION 3: OUR MISSION ==================== -->
-    <section class="section-mission" id="preservation">
+    <!-- ==================== SECTION 3: OUR MISSION (FULL WIDTH) ==================== -->
+    <section class="section-mission full-width-section" id="preservation">
       <div class="mission-backdrop-image">
         <img src="assets/mission-bg-wide.jpg" alt="California streetcar on palm tree boulevard" class="mission-bg-img" />
         <div class="mission-gradient-overlay"></div>
       </div>
 
-      <div class="mission-container">
+      <div class="mission-container full-width-container">
         
         <!-- Mission Left Content -->
         <div class="mission-content">
@@ -468,9 +467,9 @@
       </div>
     </section>
 
-    <!-- ==================== SECTION 4: FEATURED FROM THE ARCHIVES ==================== -->
-    <section class="section-stories" id="stories">
-      <div class="stories-container">
+    <!-- ==================== SECTION 4: FEATURED FROM THE ARCHIVES (FULL WIDTH) ==================== -->
+    <section class="section-stories full-width-section" id="stories">
+      <div class="stories-container full-width-container">
         
         <!-- Stories Top Bar -->
         <div class="stories-top-row">
@@ -592,9 +591,9 @@
     </section>
   </main>
 
-  <!-- ==================== FOOTER ==================== -->
+  <!-- ==================== FOOTER (FULL WIDTH) ==================== -->
   <footer class="site-footer">
-    <div class="footer-container">
+    <div class="footer-container full-width-container">
       <div class="footer-top">
         <div class="footer-brand">
           <div class="brand-link">
