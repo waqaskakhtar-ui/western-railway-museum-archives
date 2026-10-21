@@ -1094,20 +1094,31 @@ ul {
   margin-bottom: 16px;
 }
 
+/* Footer logo enlarged */
 .footer-brand-link {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-/* Footer logo slightly smaller as requested */
 .footer-seal-wrapper {
-  width: 32px;
-  height: 32px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.footer-brand-link:hover .footer-seal-wrapper {
+  transform: rotate(-5deg) scale(1.05);
+  border-color: var(--color-primary);
 }
 
 .footer-seal {
@@ -1119,13 +1130,13 @@ ul {
 .footer-brand-title {
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .footer-brand-title .brand-word {
-  font-size: 9.5px;
-  letter-spacing: 0.15em;
-  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  font-weight: 800;
   color: var(--text-white);
 }
 
