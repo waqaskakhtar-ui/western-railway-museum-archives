@@ -146,19 +146,30 @@ ul {
 }
 
 .brand-seal-wrapper {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
   background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.brand-link:hover .brand-seal-wrapper {
+  transform: rotate(-5deg) scale(1.05);
+  border-color: var(--color-primary);
 }
 
 .brand-seal {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  display: block;
 }
 
 .brand-title {
@@ -1080,7 +1091,42 @@ ul {
 }
 
 .footer-brand .brand-link {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+}
+
+.footer-brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Footer logo slightly smaller as requested */
+.footer-seal-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  background: #000;
+}
+
+.footer-seal {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer-brand-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.footer-brand-title .brand-word {
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--text-white);
 }
 
 .footer-tagline {
